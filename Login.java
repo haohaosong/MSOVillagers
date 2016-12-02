@@ -68,7 +68,7 @@ public class Login extends JFrame implements ActionListener
         //给窗口设置标题  
         this.setTitle("村民信息管理系统");  
         //设置窗体大小  
-        this.setSize(300,200);  
+        this.setSize(300,180);  
         //设置窗体初始位置  
         this.setLocation(400, 300);  
         //设置当关闭窗口时，保证JVM也退出  
