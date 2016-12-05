@@ -1,4 +1,8 @@
-
+/*
+* author:haohaosong
+* date:2016/12/5
+* note:This is the class of villagers
+*/
 public class Villager {
 	private String name;
 	private  int age;
