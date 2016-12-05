@@ -1,5 +1,5 @@
 /*
-* author:haohaosong
+* author:haohaosong,cx
 * date:2016/12/2
 * note:The UI window when the admin login in
 */
