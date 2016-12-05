@@ -1,7 +1,7 @@
 /*
-* author:haohaosong,cx
-* date:2016/12/2
-* note:The UI window when the admin login in
+* author:haohaosong
+* date:2016/12/5
+* note:The UI interface when the admin login in
 */
 
 import java.awt.*;  
@@ -14,12 +14,10 @@ public class UI extends JFrame implements ActionListener
         JButton jb1,jb2,jb3,jb4=null;  
         JPanel jp1,jp2,jp3,jp4=null;  
         JLabel jlb1,jlb3,jlb4=null;  
-          
         public static void main(String[] args) {  
             // TODO Auto-generated method stub  
           UI  ui=new UI();  
         }  
-          
         //构造函数  
         public  UI()//构造函数
         {  
@@ -28,7 +26,13 @@ public class UI extends JFrame implements ActionListener
             jb2=new JButton("查询");
             jb3=new JButton("删除"); 
             jb4=new JButton("修改"); 
-
+            
+            //设置监听  
+            jb1.addActionListener(this);  
+            jb2.addActionListener(this);   
+            jb3.addActionListener(this);  
+            jb4.addActionListener(this);  
+            
             jp1=new JPanel();  
             jp2=new JPanel();  
             jp3=new JPanel();                
@@ -62,8 +66,39 @@ public class UI extends JFrame implements ActionListener
             this.setVisible(true);  
 }  
         @Override  
-        public void actionPerformed(ActionEvent e) {  
-            // TODO Auto-generated method stub  
-              
+        public void actionPerformed(ActionEvent e) 
+		{  
+            if(e.getActionCommand()=="添加")  
+            {    
+            	add();
+            }
+            else if(e.getActionCommand()=="查询")  
+            {  
+                select();  
+            }
+            else if(e.getActionCommand()=="删除")  
+            {  
+                delete();  
+            }
+            else if(e.getActionCommand()=="修改")  
+            {  
+                change();  
+            }
         }  
+        void select()
+        {
+        	UISelect sele = new UISelect();
+        }
+        void change()
+        {
+        	//
+        }
+        void delete()
+        {
+        	//
+        }
+        void add()
+        {
+        	UIAddInfo addinfo = new UIAddInfo();
+        }
 }  
