@@ -1,6 +1,6 @@
 /*
- * author:haohaosong,cx
- * date:2016/12/2
+ * author:haohaosong 
+ * date:2016/12/5
  * note:Login login = new Login() 
  */
 
@@ -75,8 +75,7 @@ public class Login extends JFrame implements ActionListener
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         //显示窗体  
         this.setVisible(true);  
-        this.setResizable(true);  
-          
+        this.setResizable(true);            
     }  
     @Override  
     public void actionPerformed(ActionEvent e) {  
@@ -91,12 +90,13 @@ public class Login extends JFrame implements ActionListener
         }                      
     }  
       
-    //教师登录判断方法  
+    //管理员登录判断方法  
     public void login()  
     {  
         if(admin_name.equals(jtf.getText())&&admin_pwd.equals(jpf.getText()))  
         {  
              JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
+             UI ui = new UI();
              clear();  
         }else if(jtf.getText().isEmpty()&&jpf.getText().isEmpty())  
         {  
@@ -119,5 +119,6 @@ public class Login extends JFrame implements ActionListener
     {  
         jtf.setText("");  
         jpf.setText("");  
-    }         
+    }  
+          
 }  
