@@ -28,8 +28,10 @@ public class UISelect extends JFrame implements ActionListener
             jb1=new JButton("按姓名查询");  
             jb2=new JButton("按职务查询");
             jb3=new JButton("按身份证号"); 
-            //jb4=new JButton("按性别查询"); 
-
+            jb1.addActionListener(this);
+            jb2.addActionListener(this);
+            jb3.addActionListener(this);
+            
             jp1=new JPanel();  
             jp2=new JPanel();  
             jp3=new JPanel();                
@@ -43,8 +45,7 @@ public class UISelect extends JFrame implements ActionListener
             jp2.add(jb1);  
             jp2.add(jb2);  
             jp2.add(jb3);
-            //jp2.add(jb4);
-            
+                        
             jp3.add(jlb3);  
             jp3.add(jlb4);
                        
@@ -57,12 +58,23 @@ public class UISelect extends JFrame implements ActionListener
             this.setTitle("村民信息管理系统");  
             this.setSize(600,450);  
             this.setLocation(200, 200);       
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+            this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);  
             this.setVisible(true);  
 }  
         @Override  
-        public void actionPerformed(ActionEvent e) {  
-            // TODO Auto-generated method stub  
-              
+        public void actionPerformed(ActionEvent e) 
+        {  
+        	if(e.getActionCommand()=="按姓名查询")  
+            {    
+            	   UISelectByName bn = new UISelectByName();
+            }
+            else if(e.getActionCommand()=="按职务查询")  
+            {  
+            	UISelectByWork bn = new UISelectByWork();
+            }
+            else if(e.getActionCommand()=="按身份证号")
+            {
+            	UISelectByID bn = new UISelectByID();
+            }
         }  
 }  
