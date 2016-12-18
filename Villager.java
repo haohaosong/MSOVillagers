@@ -7,19 +7,25 @@ public class Villager {
 	private String name;
 	private  int age;
 	private String ID;
+	private String sex;
 	private String post;
 	private String address;
 	private String nation;
-	private String education;
-	Villager(String name,int age,String ID,String post,String address,String nation,String education)
+	private String marrage;
+	Villager(String name,int age,String ID,String sex,String post,String address,String nation,String marrage)
 	{
 		this.name = name;
 		this.age = age;
 		this.ID = ID;
+		this.sex = sex;
 		this.post = post;
 		this.address = address;
 		this.nation = nation;
-		this.education = education;
+		this.marrage = marrage;
+	}
+	public String getPost()
+	{
+		return post;
 	}
 	public String getName()
 	{
@@ -41,8 +47,12 @@ public class Villager {
 	{
 		return nation;
 	}
-	public String getEducation()
+	public String getMarrage()
 	{
-		return education;
+		return marrage;
+	}
+	public String getSex()
+	{
+		return sex;
 	}
 }
