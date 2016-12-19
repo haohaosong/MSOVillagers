@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class jdbcSuccess
 {
-	public static void main(String[] argv) 
+	public void SelectMethod(int chose ,String selectmethod) 
 	{
 		connectDb db = new connectDb();
 		db.toConnect();
@@ -16,13 +16,27 @@ public class jdbcSuccess
 		alt.toChose(con, 1);
 
 		query que = new query();
-		ResultSet result = que.toChoose(con, 1);
-		
+		//ResultSet result = que.toChoose(con, 1);
+		ResultSet result = que.toSelect(con, chose,selectmethod);
         try 
         {
 			while (result.next())   
-			    System.out.println(result.getString("name")+result.getString("age"));
-		} 
+			{    
+				//放入一个村民对象中
+				//打印该村民对象
+					System.out.print(result.getString("name")+result.getString("age"));
+					System.out.print("  ");
+					System.out.print(result.getString("sex"));
+					System.out.print("  ");
+					System.out.print(result.getString("ID"));
+					System.out.print("  ");
+					System.out.print(result.getString("marrage"));
+					System.out.print("  ");
+					System.out.print(result.getString("nation"));
+					System.out.print("  ");
+					System.out.println(result.getString("address"));
+			}
+        }
         catch (SQLException e)
         {
         	System.out.println("print wrong");
@@ -34,22 +48,30 @@ public class jdbcSuccess
 
 class query 
 {
-	public ResultSet toChoose(Connection con, int chose)//三个表格，一个连接查询
+	public ResultSet toChoose(Connection con, int chose)
 	{
 		String sql = null;
-		if(chose == 1)
+		sql = " select * from villager where name = '张三'";//查询
+		return queryAll(con, sql);
+	}
+	
+	public ResultSet toSelect(Connection con, int chose,String selectmethod)
+	{
+		String sql = null;
+		//String temp = " ' ";
+		switch(chose)
 		{
-			sql = "select * from worker_main";
+		case 1:
+			sql = "select * from villager where name = "+selectmethod;//按照姓名查询
+			break;
+		case 2:
+			sql = "select * from villager where ID =  "+selectmethod;//按照身份证号查询
+			break;
+		case 3:
+			sql = "select * from villager where address =  "+selectmethod;//按照地址查询
+			break;
 		}
-		else if(chose == 2)
-		{
-			sql = "select * from worker_detail";//进行连接查询###
-		}
-		else if(chose == 3)
-		{
-			sql = "select * from product_info";
-		}
-		sql = "select * from student";
+		System.out.println(sql);
 		return queryAll(con, sql);
 	}
 	
@@ -61,6 +83,7 @@ class query
 		{
 			pre = con.prepareStatement(sql);
 			result = pre.executeQuery();
+			//System.out.println(result.next());
 		}
 		catch (SQLException e)
 		{
@@ -69,7 +92,7 @@ class query
 		return result;//返回结果进行选择输出
 	}
 }
-
+/*
 class QueryByTerms
 {
 	int MAX_NUM = 0; //##get from database
@@ -123,8 +146,6 @@ class QueryByTerms
 	}
 };
 
-
-//
  class QueryStronger
  {
 	int MAX_NUM = 0; //##get from database
@@ -199,7 +220,7 @@ class QueryByTerms
 		}
 		return result;//返回结果进行选择输出
 	}
-};
+};*/
 class alter
 {
 	int workerId = 18;//get those from window
