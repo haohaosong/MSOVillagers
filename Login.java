@@ -118,7 +118,7 @@ public class Login extends JFrame implements ActionListener
     public  void clear()  
     {  
         jtf.setText("admin");  
-        jpf.setText("");  
+        jpf.setText("admin");  
     }  
           
 }  

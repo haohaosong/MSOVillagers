@@ -45,9 +45,6 @@ public class UIDel extends JFrame implements ActionListener
             jp1.add(jlb1);  
             jp2.add(jlb2);  
              jp2.add(jf1);
-            //jp2.add(jb2);  
-           // jp2.add(jb3);
-            //jp2.add(jb4);
             
             jp3.add(jb1);
             jp3.add(jb2);
@@ -72,7 +69,25 @@ public class UIDel extends JFrame implements ActionListener
             // TODO Auto-generated method stub  
         	if(e.getActionCommand()=="确认删除")  
             {    
-            	    //调用数据库，删除信息
+        		jdbcSuccess j = new jdbcSuccess();
+        		String name = jf1.getText();
+        		if(jf1.getText().isEmpty())
+        		{
+        			JOptionPane.showMessageDialog(null,"请输入需要删除的姓名！","提示消息",JOptionPane.WARNING_MESSAGE); 
+        			return;
+        		}
+        		else
+        		{
+        			Villager v =j.SelectMethod(1, "'"+name+"'");
+        			if(v == null)
+        			{
+        				JOptionPane.showMessageDialog(null,"该人不存在！","提示消息",JOptionPane.WARNING_MESSAGE); 
+        				return ;
+        			}
+        			 j.DeleteMethod("'"+name+"'");
+        			 JOptionPane.showMessageDialog(null,"删除成功！","提示消息",JOptionPane.WARNING_MESSAGE); 
+        			 this.hide();
+        		}
             }
             else if(e.getActionCommand()=="取消重置")  
             {  

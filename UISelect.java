@@ -26,10 +26,8 @@ public class UISelect extends JFrame implements ActionListener
         {  
             //创建组件  
             jb1=new JButton("按姓名查询");  
-            jb2=new JButton("按职务查询");
             jb3=new JButton("按身份证号"); 
             jb1.addActionListener(this);
-            jb2.addActionListener(this);
             jb3.addActionListener(this);
             
             jp1=new JPanel();  
@@ -43,7 +41,7 @@ public class UISelect extends JFrame implements ActionListener
               
             jp1.add(jlb1);  
             jp2.add(jb1);  
-            jp2.add(jb2);  
+            //jp2.add(jb2);  
             jp2.add(jb3);
                         
             jp3.add(jlb3);  
@@ -67,10 +65,6 @@ public class UISelect extends JFrame implements ActionListener
         	if(e.getActionCommand()=="按姓名查询")  
             {    
             	   UISelectByName bn = new UISelectByName();
-            }
-            else if(e.getActionCommand()=="按职务查询")  
-            {  
-            	UISelectByWork bn = new UISelectByWork();
             }
             else if(e.getActionCommand()=="按身份证号")
             {

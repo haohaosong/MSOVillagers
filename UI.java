@@ -93,7 +93,7 @@ public class UI extends JFrame implements ActionListener
         }
         void change()
         {
-        	
+        	UIChangeInfo c = new UIChangeInfo();
         }
         void delete()
         {

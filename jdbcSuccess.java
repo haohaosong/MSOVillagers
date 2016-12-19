@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class jdbcSuccess
 {
-	public void SelectMethod(int chose ,String selectmethod) 
+	public Villager SelectMethod(int chose ,String selectmethod) 
 	{
 		connectDb db = new connectDb();
 		db.toConnect();
@@ -16,25 +16,18 @@ public class jdbcSuccess
 		alt.toChose(con, 1);
 
 		query que = new query();
-		//ResultSet result = que.toChoose(con, 1);
 		ResultSet result = que.toSelect(con, chose,selectmethod);
-        try 
+        
+		try 
         {
-			while (result.next())   
+        	if(result.next())   
 			{    
 				//放入一个村民对象中
+        		Villager v = new Villager(result.getString("name"),result.getString("age"),
+        				result.getString("sex"),result.getString("ID"),result.getString("marrage"),
+        				result.getString("nation"),result.getString("address"));
 				//打印该村民对象
-					System.out.print(result.getString("name")+result.getString("age"));
-					System.out.print("  ");
-					System.out.print(result.getString("sex"));
-					System.out.print("  ");
-					System.out.print(result.getString("ID"));
-					System.out.print("  ");
-					System.out.print(result.getString("marrage"));
-					System.out.print("  ");
-					System.out.print(result.getString("nation"));
-					System.out.print("  ");
-					System.out.println(result.getString("address"));
+					return v;
 			}
         }
         catch (SQLException e)
@@ -43,22 +36,70 @@ public class jdbcSuccess
 			e.printStackTrace();
 		}
 		db.close();	
+		return null;
+	}
+	
+	public Villager DeleteMethod(String selectmethod) 
+	{
+		connectDb db = new connectDb();
+		db.toConnect();
+		Connection con = db.getCon();
+
+		alter alt = new alter();
+		alt.toChose(con, 1);
+
+		query que = new query();
+		que.toDel(con, selectmethod);
+        
+		db.close();	
+		return null;
+	}
+	public Villager InsertMethod(Villager v) 
+	{
+		connectDb db = new connectDb();
+		db.toConnect();
+		Connection con = db.getCon();
+
+		alter alt = new alter();
+		alt.toChose(con, 1);
+
+		query que = new query();
+		que.toInsert(con, v);
+        
+		db.close();	
+		return null;
+	}
+	public Villager UpdateMethod(Villager v) 
+	{
+		connectDb db = new connectDb();
+		db.toConnect();
+		Connection con = db.getCon();
+
+		alter alt = new alter();
+		alt.toChose(con, 1);
+
+		query que = new query();
+		//String name = 
+		//que.toUpdate(con,1, );//1代表姓名
+        
+		db.close();	
+		return null;
 	}
 };
 
 class query 
 {
-	public ResultSet toChoose(Connection con, int chose)
+	public ResultSet toUpdate(Connection con, int chose,String selectmethod)
 	{
 		String sql = null;
-		sql = " select * from villager where name = '张三'";//查询
+		sql = "select * from villager where name = "+selectmethod;//按照姓名查询
+
+		System.out.println(sql);
 		return queryAll(con, sql);
 	}
-	
 	public ResultSet toSelect(Connection con, int chose,String selectmethod)
 	{
 		String sql = null;
-		//String temp = " ' ";
 		switch(chose)
 		{
 		case 1:
@@ -74,6 +115,29 @@ class query
 		System.out.println(sql);
 		return queryAll(con, sql);
 	}
+	public void toDel(Connection con, String name)
+	{
+		String sql = null;
+		sql = "delete from villager where name = "+name;//按照姓名删除
+		System.out.println(sql);
+		queryAll(con, sql);
+	}
+	public void toInsert(Connection con, Villager v)
+	{
+		String sql = null;
+		
+		String name = "'"+v.getName()+"'";
+		String age = "'"+String.valueOf(v.getAge())+"'";
+		String sex = "'"+v.getSex()+"'";
+		String marrage ="'"+ v.getMarrage()+"'";
+		String address = "'"+v.getAddress()+"'";
+		String ID = "'"+v.getID()+"'";
+		String nation = "'"+v.getNation()+"'";
+		sql = "insert into villager values ("+name+","+age+","
+				+sex+","+ID+","+marrage+","+nation+","+address+")";
+		System.out.println(sql);
+		queryAll(con, sql);
+	}
 	
 	private static ResultSet queryAll(Connection con, String sql)
 	{
@@ -83,7 +147,6 @@ class query
 		{
 			pre = con.prepareStatement(sql);
 			result = pre.executeQuery();
-			//System.out.println(result.next());
 		}
 		catch (SQLException e)
 		{
