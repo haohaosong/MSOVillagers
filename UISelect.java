@@ -54,9 +54,9 @@ public class UISelect extends JFrame implements ActionListener
             this.add(jp3);      
               
             //设置布局管理器  
-            this.setLayout(new GridLayout(5,5,50,50));  
+            this.setLayout(new GridLayout(4,5,50,50));  
             this.setTitle("村民信息管理系统");  
-            this.setSize(600,450);  
+            this.setSize(450,350);  
             this.setLocation(200, 200);       
             this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);  
             this.setVisible(true);  
