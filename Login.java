@@ -1,6 +1,6 @@
 /*
  * author:haohaosong 
- * date:2016/12/5
+ * date:2016/12/2
  * note:Login login = new Login() 
  */
 
@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;  
-  
+//import java.awt.event.WindowAdapter;
 public class Login extends JFrame implements ActionListener 
 {  
     //定义组件  
@@ -18,8 +18,8 @@ public class Login extends JFrame implements ActionListener
     JTextField jtf=null;  
     JLabel jlb1,jlb2,jlb3=null;  
     JPasswordField jpf=null;  
-    ButtonGroup bg=null;  
-          
+    ButtonGroup bg=null; 
+    
     //设定用户名和密码  
     final String admin_name="admin";  
     final String admin_pwd="admin";   
@@ -75,7 +75,7 @@ public class Login extends JFrame implements ActionListener
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         //显示窗体  
         this.setVisible(true);  
-        this.setResizable(true);            
+        this.setResizable(true);       
     }  
     @Override  
     public void actionPerformed(ActionEvent e) {  
@@ -95,9 +95,9 @@ public class Login extends JFrame implements ActionListener
     {  
         if(admin_name.equals(jtf.getText())&&admin_pwd.equals(jpf.getText()))  
         {  
-             JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
+             JOptionPane.showMessageDialog(null,"登录成功！现在转向登录界面...","提示消息",JOptionPane.WARNING_MESSAGE);  
+             this.hide();;
              UI ui = new UI();
-             clear();  
         }else if(jtf.getText().isEmpty()&&jpf.getText().isEmpty())  
         {  
             JOptionPane.showMessageDialog(null,"请输入用户名和密码！","提示消息",JOptionPane.WARNING_MESSAGE);  
@@ -117,7 +117,7 @@ public class Login extends JFrame implements ActionListener
     //清空文本框和密码框  
     public  void clear()  
     {  
-        jtf.setText("");  
+        jtf.setText("admin");  
         jpf.setText("");  
     }  
           

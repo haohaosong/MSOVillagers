@@ -41,7 +41,7 @@ public class UISelectByID extends JFrame implements ActionListener
             jlb3=new JLabel("全村公告：");  
             jlb4=new JLabel("村长选举大会正在召开");  
             
-            jf1 = new JTextField(10);
+            jf1 = new JTextField(19);
             
             jp1.add(jlb1);  
             jp2.add(jlb2);  
@@ -71,6 +71,9 @@ public class UISelectByID extends JFrame implements ActionListener
         	if(e.getActionCommand()=="确认")  
             {    
             	    //调用数据库，查询信息
+        		jdbcSuccess j = new jdbcSuccess();
+        		String ID = jf1.getText();
+        		j.SelectMethod(2, "'"+ID+"'");
             }
             else if(e.getActionCommand()=="重置")  
             {  

@@ -44,7 +44,10 @@ public class UIDel extends JFrame implements ActionListener
             
             jp1.add(jlb1);  
             jp2.add(jlb2);  
-            jp2.add(jf1);
+             jp2.add(jf1);
+            //jp2.add(jb2);  
+           // jp2.add(jb3);
+            //jp2.add(jb4);
             
             jp3.add(jb1);
             jp3.add(jb2);
@@ -61,7 +64,7 @@ public class UIDel extends JFrame implements ActionListener
             this.setTitle("村民信息管理系统");  
             this.setSize(600,450);  
             this.setLocation(200, 200);       
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+            this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);  
             this.setVisible(true);  
 }  
         @Override  

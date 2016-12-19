@@ -1,7 +1,7 @@
 /*
 * author:haohaosong
-* date:2016/12/5
-* note:The UI interface when the admin login in
+* date:2016/12/2
+* note:The UI window when the admin login in
 */
 
 import java.awt.*;  
@@ -14,10 +14,12 @@ public class UI extends JFrame implements ActionListener
         JButton jb1,jb2,jb3,jb4=null;  
         JPanel jp1,jp2,jp3,jp4=null;  
         JLabel jlb1,jlb3,jlb4=null;  
+          
         public static void main(String[] args) {  
             // TODO Auto-generated method stub  
           UI  ui=new UI();  
         }  
+          
         //构造函数  
         public  UI()//构造函数
         {  
@@ -62,12 +64,12 @@ public class UI extends JFrame implements ActionListener
             this.setTitle("村民信息管理系统");  
             this.setSize(400,300);  
             this.setLocation(200, 200);       
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+            this.setDefaultCloseOperation(HIDE_ON_CLOSE);  
             this.setVisible(true);  
 }  
         @Override  
-        public void actionPerformed(ActionEvent e) 
-		{  
+        public void actionPerformed(ActionEvent e) {  
+            
             if(e.getActionCommand()=="添加")  
             {    
             	add();
@@ -91,11 +93,11 @@ public class UI extends JFrame implements ActionListener
         }
         void change()
         {
-        	//
+        	
         }
         void delete()
         {
-        	//
+        	UIDel del = new UIDel();
         }
         void add()
         {

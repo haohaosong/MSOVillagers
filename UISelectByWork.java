@@ -72,6 +72,9 @@ public class UISelectByWork extends JFrame implements ActionListener
         	if(e.getActionCommand()=="确认")  
             {    
             	    //调用数据库，查询信息
+        		jdbcSuccess j = new jdbcSuccess();
+        		String address = jf1.getText();
+        		j.SelectMethod(3, "'"+address+"'");
             }
             else if(e.getActionCommand()=="重置")  
             {  

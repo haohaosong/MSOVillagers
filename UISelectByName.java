@@ -19,7 +19,7 @@ public class UISelectByName extends JFrame implements ActionListener
         
         public static void main(String[] args) {  
             // TODO Auto-generated method stub  
-        	UISelectByID  ui=new UISelectByID();  
+        	UISelectByName  ui=new UISelectByName();  
         }  
           
         //构造函数  
@@ -74,6 +74,9 @@ public class UISelectByName extends JFrame implements ActionListener
         	if(e.getActionCommand()=="确认")  
             {    
             	    //调用数据库，查询信息
+        		jdbcSuccess j = new jdbcSuccess();
+        		String name = jf1.getText();
+        		j.SelectMethod(1, "'"+name+"'");
             }
             else if(e.getActionCommand()=="重置")  
             {  
