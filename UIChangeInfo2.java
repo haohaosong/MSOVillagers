@@ -1,4 +1,5 @@
 
+
 /*
  * author:haohaosong 
  * date:2016/12/5
@@ -10,7 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;  
   
-public class UIAddInfo extends JFrame implements ActionListener 
+public class UIChangeInfo2 extends JFrame implements ActionListener 
 {  
     //定义组件  
 	JButton jb1,jb2=null;  
@@ -19,16 +20,19 @@ public class UIAddInfo extends JFrame implements ActionListener
     JTextField jtf1,jtf2,jtf3,jtf4,jtf5,jtf6,jtf7=null;  
     JLabel jlb1,jlb2,jlb3,jlb4,jlb5,jlb6,jlb7,jlbMenu=null;    
     ButtonGroup bg=null;  
-               
+    
+    private String OldName;
+    
     public static void main(String[] args) 
     {  
-    	UIAddInfo  ms=new UIAddInfo();  
+    	UIChangeInfo2  ms=new UIChangeInfo2("");  
     }  
-    public UIAddInfo()  
+    public UIChangeInfo2(String OldName)  
     {  
+    	this.OldName = OldName;
          //创建组件  
-        jb1=new JButton("确定");  
-        jb2=new JButton("重置");  
+        jb1=new JButton("确定修改");  
+        jb2=new JButton("取消重置");  
         //设置监听  
         jb1.addActionListener(this);  
         jb2.addActionListener(this);  
@@ -45,7 +49,7 @@ public class UIAddInfo extends JFrame implements ActionListener
         jp7=new JPanel();
         jp8=new JPanel();
         
-        jlbMenu = new JLabel("现在是信息录入界面");
+        jlbMenu = new JLabel("现在是信息修改界面，不修改的地放请填空");
         jlb1=new JLabel("姓名：");  
         jlb2=new JLabel("年龄：");
         jlb3=new JLabel("性别：");
@@ -116,7 +120,7 @@ public class UIAddInfo extends JFrame implements ActionListener
     @Override  
     public void actionPerformed(ActionEvent e) {  
           
-        if(e.getActionCommand()=="确定")  
+        if(e.getActionCommand()=="确定修改")  
         {    
         	jdbcSuccess j = new jdbcSuccess();
         	Villager v = new Villager(jtf1.getText(),
@@ -126,16 +130,10 @@ public class UIAddInfo extends JFrame implements ActionListener
         			jtf6.getText(),
         			jtf5.getText(),
         			jtf7.getText());
-        	//判断能否添加
-        	if(CheckPass(v) == false)
-        	{
-        		return ;
-        	}
-    		j.InsertMethod(v);
-    		//添加
-    		JOptionPane.showMessageDialog(null,"添加成功！","提示消息",JOptionPane.WARNING_MESSAGE); 
+    		j.UpdateMethod(v,OldName);
+    		this.hide();
         }
-        else if(e.getActionCommand()=="重置")  
+        else if(e.getActionCommand()=="取消重置")  
         {  
             clear();  
         }                      
@@ -151,9 +149,9 @@ public class UIAddInfo extends JFrame implements ActionListener
         jtf6.setText(""); 
         jtf7.setText(""); 
     } 
-    boolean CheckPass(Villager v)
+    /*boolean CheckPass(Villager v)
     {
-    	if(Check.checkName(v.getName()) == false)
+    	if(v.getName() != null && Check.checkName(v.getName()) == false)
     	{
     		JOptionPane.showMessageDialog(null,"姓名中不能包含字母","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
@@ -163,31 +161,31 @@ public class UIAddInfo extends JFrame implements ActionListener
     		JOptionPane.showMessageDialog(null,"请输入正确的年龄！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
-    	else if(Check.checkSex(v.getSex()) == false)
+    	else if(v.getSex() != null &&Check.checkSex(v.getSex()) == false)
     	{
     		JOptionPane.showMessageDialog(null,"请输入正确的性别！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
-    	else if(Check.checkID(v.getID()) == false)
+    	else if(v.getID() != null &&Check.checkID(v.getID()) == false)
     	{
     		JOptionPane.showMessageDialog(null,"请输入正确的身份证号！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
-    	else if(Check.checkNation(v.getNation()) == false)
+    	else if(v.getNation() != null &&Check.checkNation(v.getNation()) == false)
     	{
     		JOptionPane.showMessageDialog(null,"请输入正确的民族信息！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
-    	else if(Check.checkMarrage(v.getMarrage())==false)
+    	else if(v.getMarrage() != null &&Check.checkMarrage(v.getMarrage())==false)
     	{
     		JOptionPane.showMessageDialog(null,"请输入正确的婚姻状况！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
-    	else if(Check.checkAddress(v.getAddress())==false)
+    	else if(v.getAddress() != null &&Check.checkAddress(v.getAddress())==false)
     	{
     		JOptionPane.showMessageDialog(null,"请输入正确的家庭住址！","提示消息",JOptionPane.WARNING_MESSAGE); 
     		return false;
     	}
     	return true;
-    }
+    }*/
 }  

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class jdbcSuccess
 {
 	public Villager SelectMethod(int chose ,String selectmethod) 
@@ -69,7 +71,7 @@ public class jdbcSuccess
 		db.close();	
 		return null;
 	}
-	public Villager UpdateMethod(Villager v) 
+	public Villager UpdateMethod(Villager v,String OldName) 
 	{
 		connectDb db = new connectDb();
 		db.toConnect();
@@ -79,9 +81,7 @@ public class jdbcSuccess
 		alt.toChose(con, 1);
 
 		query que = new query();
-		//String name = 
-		//que.toUpdate(con,1, );//1代表姓名
-        
+        que.toUpdate(con,v,OldName);
 		db.close();	
 		return null;
 	}
@@ -89,14 +89,87 @@ public class jdbcSuccess
 
 class query 
 {
-	public ResultSet toUpdate(Connection con, int chose,String selectmethod)
+	public ResultSet toUpdate(Connection con, Villager v,String name)
 	{
 		String sql = null;
-		sql = "select * from villager where name = "+selectmethod;//按照姓名查询
-
-		System.out.println(sql);
+		name = "'"+name+"'";
+		System.out.println("hello");
+		if(!v.getName().equals(""))
+		{
+			if(Check.checkName(v.getName()) == false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"姓名中不能包含字母","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set name = '"+v.getName()+ "'where name = " + name;//按照姓名查询
+			name = "'"+v.getName()+"'";
+			System.out.println(sql);
+			queryAll(con, sql);
+		}
+		if(!v.getMarrage().equals(""))
+		{
+			if(Check.checkMarrage(v.getMarrage())==false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"请输入正确的婚姻状况！","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set marrage ='"+v.getMarrage()+ "'where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		if(v.getAge()!=0)
+		{
+			if(Check.checkAge(v.getAge()) == false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"请输入正确的年龄！","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set age = "+v.getAge()+ "where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		if(!v.getSex().equals(""))
+		{
+			 if(Check.checkSex(v.getSex()) == false)
+		    {
+		    		JOptionPane.showMessageDialog(null,"请输入正确的性别！","提示消息",JOptionPane.WARNING_MESSAGE); 
+		    		return null;
+		    }
+			sql = "update villager set sex = '"+v.getSex()+ "'where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		if(!v.getNation().equals(""))
+		{
+			if(Check.checkNation(v.getNation()) == false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"请输入正确的民族信息！","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set nation = '"+v.getNation()+ "'where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		if(!v.getID().equals(""))
+		{
+			if(Check.checkID(v.getID()) == false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"请输入正确的身份证号！","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set ID = '"+v.getID()+ "'where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		if(!v.getAddress().equals(""))
+		{
+			if(Check.checkAddress(v.getAddress())==false)
+	    	{
+	    		JOptionPane.showMessageDialog(null,"请输入正确的家庭住址！","提示消息",JOptionPane.WARNING_MESSAGE); 
+	    		return null;
+	    	}
+			sql = "update villager set address = '"+v.getAddress()+ "'where name = " + name;//按照姓名查询
+			queryAll(con, sql);
+		}
+		JOptionPane.showMessageDialog(null,"修改成功！","提示消息",JOptionPane.WARNING_MESSAGE); 
 		return queryAll(con, sql);
 	}
+	
 	public ResultSet toSelect(Connection con, int chose,String selectmethod)
 	{
 		String sql = null;
@@ -141,6 +214,7 @@ class query
 	
 	private static ResultSet queryAll(Connection con, String sql)
 	{
+		System.out.println(sql);
 		PreparedStatement pre = null;
 		ResultSet result = null;
 		try 
@@ -155,135 +229,6 @@ class query
 		return result;//返回结果进行选择输出
 	}
 }
-/*
-class QueryByTerms
-{
-	int MAX_NUM = 0; //##get from database
-	int workerId = 41;//get workId from the window##########
-	int index = 1;
-	String workerName = "zhang";
-	String productName = "辣条";
-	int productId = 1002;
-
-	public ResultSet toChoose(Connection con, int chose, String var)
-	{
-		String sql = null;
-		switch(chose)
-		{
-		case 1:
-			sql = "select * from worker_main where worker_id = ?";
-			var = String.valueOf(workerId);
-			break;
-		case 2:
-			sql = "select * from worker_main where name = ?";
-			var = workerName;
-			break;
-		case 3:
-			sql = "select * from product_info where product_id = ?";
-			var = String.valueOf(productId);
-			break;
-		case 4:
-			sql = "select * from product_info where product_name = ?";
-			var = productName;
-			break;
-		}
-		sql = "select * from student where age = ?";
-		return queryByTerms(con, sql, index, var);
-	}
-
-	private static ResultSet queryByTerms(Connection con, String sql, int index, String var)//调用时候进行判断
-	{
-		PreparedStatement pre = null;
-		ResultSet result = null;
-		try 
-		{
-			pre = con.prepareStatement(sql);
-			pre.setString(index, var);
-			result = pre.executeQuery();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return result;//返回结果进行选择输出
-	}
-};
-
- class QueryStronger
- {
-	int MAX_NUM = 0; //##get from database
-	int workerId = 41;//get workId from the window##########
-	int index = 1;
-	String workerName = "zhang";
-	String productName = "辣条";
-	int productId = 1002;
-
-	public ResultSet toChoose(Connection con, int chose, String var)
-	{
-		int tag = 0;
-		String sql = null;
-		switch(chose)
-		{
-		case 1:
-			sql = "select * from worker_main where worker_id = ?";
-			var = String.valueOf(workerId);
-			tag = 1;
-			break;
-		case 2:
-			sql = "select * from worker_main where name = ?";
-			var = workerName;
-			tag = 2;
-			break;
-		case 3:
-			sql = "select * from product_info where product_id = ?";
-			var = String.valueOf(productId);
-			tag = 3;
-			break;
-		case 4:
-			sql = "select * from product_info where product_name = ?";
-			var = productName;
-			tag = 4;
-			break;
-		case 5:
-			sql = "select * from worker_main";
-			tag = 5;
-			break;
-		case 6:
-			sql = "select * from worker_detail";
-			tag = 6;
-			break;
-		case 7:
-			sql = "select * from product_info";
-			tag = 8;
-			break;
-		}
-		
-		sql = "select * from student where age = ?";
-		
-		return queryByTerms(con, sql, index, var, tag);
-	}
-
-	
-	private static ResultSet queryByTerms(Connection con, String sql, int index, String var, int tag)//调用时候进行判断
-	{
-		PreparedStatement pre = null;
-		ResultSet result = null;
-		try 
-		{
-			pre = con.prepareStatement(sql);
-			if (tag >= 4)//如果大于等于四进行的是条件查询，否则进行的全部查询
-			{
-				pre.setString(index, var);
-			}
-			result = pre.executeQuery();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return result;//返回结果进行选择输出
-	}
-};*/
 class alter
 {
 	int workerId = 18;//get those from window

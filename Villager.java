@@ -16,12 +16,19 @@ public class Villager {
 	Villager(String name,String age,String ID,String sex,String marrage,String nation,String address)
 	{
 		this.name = name;
-		this.age = Integer.parseInt(age);
+		if(age.equals("") == true)
+			this.age = 0;
+		else
+			this.age = Integer.parseInt(age);
 		this.ID = ID;
 		this.sex = sex;
 		this.address = address;
 		this.nation = nation;
 		this.marrage = marrage;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	public String getName()
 	{
