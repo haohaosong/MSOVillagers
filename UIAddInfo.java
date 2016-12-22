@@ -2,7 +2,7 @@
 /*
  * author:haohaosong 
  * date:2016/12/5
- *  
+ * note:添加信息的界面
  */
 
 import java.awt.*;
@@ -121,8 +121,8 @@ public class UIAddInfo extends JFrame implements ActionListener
         	jdbcSuccess j = new jdbcSuccess();
         	Villager v = new Villager(jtf1.getText(),
         			jtf2.getText(),
-        			jtf4.getText(),
-        			jtf3.getText(),
+        			jtf4.getText(),//ID
+        			jtf3.getText(),//性别
         			jtf6.getText(),
         			jtf5.getText(),
         			jtf7.getText());

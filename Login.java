@@ -19,7 +19,7 @@ public class Login extends JFrame implements ActionListener
     JLabel jlb1,jlb2,jlb3=null;  
     JPasswordField jpf=null;  
     ButtonGroup bg=null; 
-    
+    //
     //设定用户名和密码  
     final String admin_name="admin";  
     final String admin_pwd="admin";   

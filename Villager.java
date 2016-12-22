@@ -38,6 +38,10 @@ public class Villager {
 	{
 		return age;
 	}
+	public String getage()
+	{
+		return Integer.toString( age);
+	}
 	public String getID()
 	{
 		return ID;

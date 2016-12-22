@@ -30,14 +30,14 @@ public class UISelectByID extends JFrame implements ActionListener {
   
   public static void main(String[] args) {  
         // TODO Auto-generated method stub  
-	  UIChangeInfo t = new UIChangeInfo();  
+	  UISelectByID t = new UISelectByID();  
   }  
   
     // 构造函数  
     public UISelectByID() {  
         // 创建组件       
-        jl = new JLabel("请输入姓名：");  
-        jl2=new JLabel("请输入身份证号：");    
+        jl = new JLabel("请输入身份证号：");  
+        jl2=new JLabel("请输入姓名：");    
           
         jl3=new JLabel("村民信息表：");  
           

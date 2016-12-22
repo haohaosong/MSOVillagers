@@ -1,4 +1,8 @@
-
+/*
+* author:cx
+* date:2016/12/20
+* note:检查传入信息是否正确
+*/
 
 public class Check 
 {
@@ -38,7 +42,7 @@ public class Check
 		{
 			if(isNumer(id[i]))
 			{
-				return true;
+				continue;
 			}
 			else
 			{
@@ -73,8 +77,9 @@ public class Check
 	}
 	public static boolean checkAddress(String address)//必须是 M 排 N号 这种形式
 	{	
-		return address.subSequence(address.length()-1,address.length() ).equals("号")
-				&&address.length()>1;
+		return true;
+				//address.subSequence(address.length()-1,address.length() ).equals("号")
+				//&&address.length()>1;
 	}
 	public static boolean checkSex(String sex)//男或女，不能为其他
 	{

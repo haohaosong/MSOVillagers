@@ -92,9 +92,9 @@ class query
 	public ResultSet toUpdate(Connection con, Villager v,String name)
 	{
 		String sql = null;
-		name = "'"+name+"'";
+		name = "'"+v.getName()+"'";
 		System.out.println("hello");
-		if(!v.getName().equals(""))
+		/*if(!v.getName().equals(""))
 		{
 			if(Check.checkName(v.getName()) == false)
 	    	{
@@ -105,7 +105,7 @@ class query
 			name = "'"+v.getName()+"'";
 			System.out.println(sql);
 			queryAll(con, sql);
-		}
+		}*/
 		if(!v.getMarrage().equals(""))
 		{
 			if(Check.checkMarrage(v.getMarrage())==false)
@@ -126,7 +126,7 @@ class query
 			sql = "update villager set age = "+v.getAge()+ "where name = " + name;//按照姓名查询
 			queryAll(con, sql);
 		}
-		if(!v.getSex().equals(""))
+		/*if(!v.getSex().equals(""))
 		{
 			 if(Check.checkSex(v.getSex()) == false)
 		    {
@@ -155,7 +155,7 @@ class query
 	    	}
 			sql = "update villager set ID = '"+v.getID()+ "'where name = " + name;//按照姓名查询
 			queryAll(con, sql);
-		}
+		}*/
 		if(!v.getAddress().equals(""))
 		{
 			if(Check.checkAddress(v.getAddress())==false)

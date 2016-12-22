@@ -2,8 +2,8 @@
 
 /*
  * author:haohaosong 
- * date:2016/12/5
- *  
+ * date:2016/12/20
+ * note:进行修改的界面
  */
 
 import java.awt.*;
@@ -25,9 +25,9 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
     
     public static void main(String[] args) 
     {  
-    	UIChangeInfo2  ms=new UIChangeInfo2("");  
+    	//UIChangeInfo2  ms=new UIChangeInfo2();  
     }  
-    public UIChangeInfo2(String OldName)  
+    public UIChangeInfo2(Villager v)  
     {  
     	this.OldName = OldName;
          //创建组件  
@@ -67,7 +67,19 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         jtf7=new JTextField(20);
         //加入到JPanel中  
         
+        jtf1.setText(v.getName());
+        jtf2.setText(v.getage());
+        jtf3.setText(v.getID());
+        jtf4.setText(v.getSex());
+        jtf5.setText(v.getNation());
+        jtf6.setText(v.getMarrage());
+        jtf7.setText(v.getAddress());
         jpMain.add(jlbMenu);
+        
+        jtf1.setEditable(false);
+        jtf3.setEditable(false);
+        jtf4.setEditable(false);
+        jtf5.setEditable(false);
         
         jp1.add(jlb1);  
         jp1.add(jtf1);  
@@ -136,56 +148,13 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         else if(e.getActionCommand()=="取消重置")  
         {  
             clear();  
-        }                      
+        }                  
     }    
-    //清空文本框和密码框  
+    //清空文本框
     public  void clear()  
     {  
-        jtf1.setText("");  
         jtf2.setText("");
-        jtf3.setText("");  
-        jtf4.setText("");
-        jtf5.setText(""); 
         jtf6.setText(""); 
         jtf7.setText(""); 
     } 
-    /*boolean CheckPass(Villager v)
-    {
-    	if(v.getName() != null && Check.checkName(v.getName()) == false)
-    	{
-    		JOptionPane.showMessageDialog(null,"姓名中不能包含字母","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(Check.checkAge(v.getAge()) == false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的年龄！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(v.getSex() != null &&Check.checkSex(v.getSex()) == false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的性别！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(v.getID() != null &&Check.checkID(v.getID()) == false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的身份证号！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(v.getNation() != null &&Check.checkNation(v.getNation()) == false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的民族信息！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(v.getMarrage() != null &&Check.checkMarrage(v.getMarrage())==false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的婚姻状况！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	else if(v.getAddress() != null &&Check.checkAddress(v.getAddress())==false)
-    	{
-    		JOptionPane.showMessageDialog(null,"请输入正确的家庭住址！","提示消息",JOptionPane.WARNING_MESSAGE); 
-    		return false;
-    	}
-    	return true;
-    }*/
 }  

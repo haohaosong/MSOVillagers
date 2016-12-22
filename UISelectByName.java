@@ -30,7 +30,7 @@ public class UISelectByName extends JFrame implements ActionListener {
   
   public static void main(String[] args) {  
         // TODO Auto-generated method stub  
-	  UIChangeInfo t = new UIChangeInfo();  
+	  UISelectByName t = new UISelectByName();  
   }  
   
     // 构造函数  
@@ -109,10 +109,11 @@ public class UISelectByName extends JFrame implements ActionListener {
     				JOptionPane.showMessageDialog(null,"没有该人！","提示消息",JOptionPane.WARNING_MESSAGE); 
     				return ;
     			}
+    			//{ "姓名", "年龄", "性别", "身份证号", "婚否","民族", "地址"};  
     			table.setValueAt(v.getName(), 0, 0);
     	        table.setValueAt(v.getAge(), 0, 1);
-    	        table.setValueAt(v.getSex(), 0, 2);
-    	        table.setValueAt(v.getID(), 0, 3);
+    	        table.setValueAt(v.getSex(), 0, 3);
+    	        table.setValueAt(v.getID(), 0, 2);
     	        table.setValueAt(v.getMarrage(), 0, 4);
     	        table.setValueAt(v.getNation(), 0, 5);
     	        table.setValueAt(v.getAddress(), 0, 6);
