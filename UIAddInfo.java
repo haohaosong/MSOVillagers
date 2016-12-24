@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 public class UIAddInfo extends JFrame implements ActionListener 
 {  
     //定义组件  
-	JButton jb1,jb2=null;  
-    JRadioButton jrb1,jrb2=null;  
+	JButton jb1,jb2=null; 
+    JRadioButton jrb1,jrb2=null;   
     JPanel jp1,jp2,jp3,jp4,jp5,jp6,jp7,jp8,jpMain=null;  
     JTextField jtf1,jtf2,jtf3,jtf4,jtf5,jtf6,jtf7=null;  
     JLabel jlb1,jlb2,jlb3,jlb4,jlb5,jlb6,jlb7,jlbMenu=null;    
@@ -22,6 +22,7 @@ public class UIAddInfo extends JFrame implements ActionListener
                
     public static void main(String[] args) 
     {  
+		//测试添加信息界面，生成一个该界面的对象
     	UIAddInfo  ms=new UIAddInfo();  
     }  
     public UIAddInfo()  
@@ -151,6 +152,8 @@ public class UIAddInfo extends JFrame implements ActionListener
         jtf6.setText(""); 
         jtf7.setText(""); 
     } 
+	
+	//检测信息是否正确，通过调用我们写的Check类提供的方法
     boolean CheckPass(Villager v)
     {
     	if(Check.checkName(v.getName()) == false)
