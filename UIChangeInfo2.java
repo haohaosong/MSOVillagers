@@ -1,9 +1,7 @@
-
-
 /*
  * author:haohaosong 
- * date:2016/12/20
- * note:进行修改的界面
+ * date:2016/12/5
+ * note:修改信息时，查询成功后弹出的界面，可以进行信息的修改，不可修改的为灰色 
  */
 
 import java.awt.*;
@@ -21,6 +19,7 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
     JLabel jlb1,jlb2,jlb3,jlb4,jlb5,jlb6,jlb7,jlbMenu=null;    
     ButtonGroup bg=null;  
     
+	//定义一个成员 OldName , 用来存取修改信息人的姓名
     private String OldName;
     
     public static void main(String[] args) 
@@ -49,7 +48,7 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         jp7=new JPanel();
         jp8=new JPanel();
         
-        jlbMenu = new JLabel("现在是信息修改界面，不修改的地放请填空");
+        jlbMenu = new JLabel("现在是信息修改界面");
         jlb1=new JLabel("姓名：");  
         jlb2=new JLabel("年龄：");
         jlb3=new JLabel("性别：");
@@ -67,6 +66,7 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         jtf7=new JTextField(20);
         //加入到JPanel中  
         
+		//将获取的内容在文本框上显示出来
         jtf1.setText(v.getName());
         jtf2.setText(v.getage());
         jtf3.setText(v.getID());
@@ -76,6 +76,7 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         jtf7.setText(v.getAddress());
         jpMain.add(jlbMenu);
         
+		//设置文本框的内容是不可修改的，显示为灰色
         jtf1.setEditable(false);
         jtf3.setEditable(false);
         jtf4.setEditable(false);
@@ -115,6 +116,7 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         this.add(jp5);
         this.add(jp8);
         this.add(jp6);
+		
         //设置布局管理器  
         this.setLayout(new GridLayout(10,1));  
         //给窗口设置标题  
@@ -134,7 +136,10 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
           
         if(e.getActionCommand()=="确定修改")  
         {    
+			//生成jdbcSuccess的对象 j ,用来调用该类的方法来对数据库的文件进行操作
         	jdbcSuccess j = new jdbcSuccess();
+			
+			//根据输入文本框的内容，生成一个村民对象
         	Villager v = new Villager(jtf1.getText(),
         			jtf2.getText(),
         			jtf4.getText(),
@@ -142,17 +147,23 @@ public class UIChangeInfo2 extends JFrame implements ActionListener
         			jtf6.getText(),
         			jtf5.getText(),
         			jtf7.getText());
+					
+			//调用 jdbcSuccess 里面的方法，对数据进行更新
     		j.UpdateMethod(v,OldName);
+			
+			//隐藏，关闭窗口即设为不可见
     		this.hide();
         }
         else if(e.getActionCommand()=="取消重置")  
         {  
+			//清空可以修改的文本框
             clear();  
         }                  
     }    
-    //清空文本框
+    //清空文本框和密码框  
     public  void clear()  
     {  
+		//只情况可以修改的文本框
         jtf2.setText("");
         jtf6.setText(""); 
         jtf7.setText(""); 
