@@ -1,4 +1,8 @@
-
+/*
+* author:yongfei , haohaosong
+* date:2016/12/19
+* note:链接数据库成功后的调用方法
+*/
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +12,7 @@ import javax.swing.JOptionPane;
 
 public class jdbcSuccess
 {
+	//查询方法--先链接数据库
 	public Villager SelectMethod(int chose ,String selectmethod) 
 	{
 		connectDb db = new connectDb();
@@ -41,6 +46,7 @@ public class jdbcSuccess
 		return null;
 	}
 	
+	//删除方法--先链接数据库
 	public Villager DeleteMethod(String selectmethod) 
 	{
 		connectDb db = new connectDb();
@@ -56,6 +62,8 @@ public class jdbcSuccess
 		db.close();	
 		return null;
 	}
+	
+	//添加方法--先链接数据库
 	public Villager InsertMethod(Villager v) 
 	{
 		connectDb db = new connectDb();
@@ -66,11 +74,15 @@ public class jdbcSuccess
 		alt.toChose(con, 1);
 
 		query que = new query();
+		
+		//调用
 		que.toInsert(con, v);
         
 		db.close();	
 		return null;
 	}
+	
+	//更新方法--先链接数据库
 	public Villager UpdateMethod(Villager v,String OldName) 
 	{
 		connectDb db = new connectDb();
@@ -89,23 +101,12 @@ public class jdbcSuccess
 
 class query 
 {
+	//链接成功后的更新方法
 	public ResultSet toUpdate(Connection con, Villager v,String name)
 	{
 		String sql = null;
 		name = "'"+v.getName()+"'";
 		System.out.println("hello");
-		/*if(!v.getName().equals(""))
-		{
-			if(Check.checkName(v.getName()) == false)
-	    	{
-	    		JOptionPane.showMessageDialog(null,"姓名中不能包含字母","提示消息",JOptionPane.WARNING_MESSAGE); 
-	    		return null;
-	    	}
-			sql = "update villager set name = '"+v.getName()+ "'where name = " + name;//按照姓名查询
-			name = "'"+v.getName()+"'";
-			System.out.println(sql);
-			queryAll(con, sql);
-		}*/
 		if(!v.getMarrage().equals(""))
 		{
 			if(Check.checkMarrage(v.getMarrage())==false)
@@ -126,36 +127,6 @@ class query
 			sql = "update villager set age = "+v.getAge()+ "where name = " + name;//按照姓名查询
 			queryAll(con, sql);
 		}
-		/*if(!v.getSex().equals(""))
-		{
-			 if(Check.checkSex(v.getSex()) == false)
-		    {
-		    		JOptionPane.showMessageDialog(null,"请输入正确的性别！","提示消息",JOptionPane.WARNING_MESSAGE); 
-		    		return null;
-		    }
-			sql = "update villager set sex = '"+v.getSex()+ "'where name = " + name;//按照姓名查询
-			queryAll(con, sql);
-		}
-		if(!v.getNation().equals(""))
-		{
-			if(Check.checkNation(v.getNation()) == false)
-	    	{
-	    		JOptionPane.showMessageDialog(null,"请输入正确的民族信息！","提示消息",JOptionPane.WARNING_MESSAGE); 
-	    		return null;
-	    	}
-			sql = "update villager set nation = '"+v.getNation()+ "'where name = " + name;//按照姓名查询
-			queryAll(con, sql);
-		}
-		if(!v.getID().equals(""))
-		{
-			if(Check.checkID(v.getID()) == false)
-	    	{
-	    		JOptionPane.showMessageDialog(null,"请输入正确的身份证号！","提示消息",JOptionPane.WARNING_MESSAGE); 
-	    		return null;
-	    	}
-			sql = "update villager set ID = '"+v.getID()+ "'where name = " + name;//按照姓名查询
-			queryAll(con, sql);
-		}*/
 		if(!v.getAddress().equals(""))
 		{
 			if(Check.checkAddress(v.getAddress())==false)
@@ -170,6 +141,7 @@ class query
 		return queryAll(con, sql);
 	}
 	
+	//链接成功后的查询方法
 	public ResultSet toSelect(Connection con, int chose,String selectmethod)
 	{
 		String sql = null;
@@ -188,6 +160,8 @@ class query
 		System.out.println(sql);
 		return queryAll(con, sql);
 	}
+	
+	//链接成功后的删除方法
 	public void toDel(Connection con, String name)
 	{
 		String sql = null;
@@ -195,6 +169,8 @@ class query
 		System.out.println(sql);
 		queryAll(con, sql);
 	}
+	
+	//链接成功后的添加方法
 	public void toInsert(Connection con, Villager v)
 	{
 		String sql = null;
@@ -229,6 +205,8 @@ class query
 		return result;//返回结果进行选择输出
 	}
 }
+
+//此接口由yongfei完成
 class alter
 {
 	int workerId = 18;//get those from window
