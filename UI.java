@@ -1,7 +1,7 @@
 /*
 * author:haohaosong
 * date:2016/12/2
-* note:The UI window when the admin login in
+* note:Login界面登录成功后的主界面
 */
 
 import java.awt.*;  
@@ -16,7 +16,7 @@ public class UI extends JFrame implements ActionListener
         JLabel jlb1,jlb3,jlb4=null;  
           
         public static void main(String[] args) {  
-            // TODO Auto-generated method stub  
+          //测试该界面
           UI  ui=new UI();  
         }  
           
@@ -70,6 +70,7 @@ public class UI extends JFrame implements ActionListener
         @Override  
         public void actionPerformed(ActionEvent e) {  
             
+			//单击按钮需要触发的实践
             if(e.getActionCommand()=="添加")  
             {    
             	add();
@@ -87,6 +88,8 @@ public class UI extends JFrame implements ActionListener
                 change();  
             }
         }  
+		
+		//打开新的界面
         void select()
         {
         	UISelect sele = new UISelect();
