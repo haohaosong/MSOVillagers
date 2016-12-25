@@ -2,7 +2,7 @@
 /*
 * author:haohaosong
 * date:2016/12/5
-* note:The UISelect window when the admin want to select the information
+* note:信息查询界面
 */
 
 import java.awt.*;  
@@ -62,6 +62,7 @@ public class UISelect extends JFrame implements ActionListener
         @Override  
         public void actionPerformed(ActionEvent e) 
         {  
+			//通过单击不同的按钮调用不同的界面
         	if(e.getActionCommand()=="按姓名查询")  
             {    
             	   UISelectByName bn = new UISelectByName();
