@@ -1,14 +1,16 @@
 /*
  * author:haohaosong 
  * date:2016/12/2
- * note:Login login = new Login() 
+ * note:信息登录的界面
  */
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;  
+
 //import java.awt.event.WindowAdapter;
+
 public class Login extends JFrame implements ActionListener 
 {  
     //定义组件  
@@ -19,15 +21,18 @@ public class Login extends JFrame implements ActionListener
     JLabel jlb1,jlb2,jlb3=null;  
     JPasswordField jpf=null;  
     ButtonGroup bg=null; 
-    //
+    
     //设定用户名和密码  
     final String admin_name="admin";  
     final String admin_pwd="admin";   
       
     public static void main(String[] args) 
     {  
+		//测试Login界面
         Login  ms=new Login();  
     }  
+	
+	//构造方法
     public Login()  
     {  
          //创建组件  
@@ -117,6 +122,7 @@ public class Login extends JFrame implements ActionListener
     //清空文本框和密码框  
     public  void clear()  
     {  
+		//重置后，密码账号自动设置成功，直接登录即可
         jtf.setText("admin");  
         jpf.setText("admin");  
     }  
