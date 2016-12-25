@@ -1,4 +1,8 @@
-
+/*
+* author:yongfei
+* date:2016/12/19
+* note：链接数据库的界面
+*/
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,11 +31,13 @@ class connectDb
         	}
         }
         
+		//链接
         public Connection getCon()
         {
         	return con;
         }
-        
+		
+		//断开链接
         public void close()
         {
         	try 
