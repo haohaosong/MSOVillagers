@@ -2,7 +2,7 @@
 /*
 * author:haohaosong
 * date:2016/12/5
-* note:信息查询界面
+* note:信息查询界面，提供两种查询接口
 */
 
 import java.awt.*;  
