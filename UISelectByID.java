@@ -1,7 +1,7 @@
-
 /*
  * author:haohaosong 
  * date:2016/12/19
+ * note:按照ID查询的界面，和按姓名查询几乎一样
  */
   
 import javax.swing.*;  
@@ -29,7 +29,7 @@ public class UISelectByID extends JFrame implements ActionListener {
     JScrollPane jsp,jsp2 = null;  
   
   public static void main(String[] args) {  
-        // TODO Auto-generated method stub  
+      
 	  UISelectByID t = new UISelectByID();  
   }  
   
@@ -51,7 +51,6 @@ public class UISelectByID extends JFrame implements ActionListener {
         model = new DefaultTableModel(colnames, 3);  
         table = new JTable(model);  
         jsp = new JScrollPane(table);  
-        //设置表格2  
           
         jp1 = new JPanel();  
         jp2 = new JPanel();  
@@ -93,22 +92,31 @@ public class UISelectByID extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {  
     	if(e.getActionCommand()=="查询")  
         {    
-        	    //调用数据库，查询信息
+        	//调用数据库，查询信息
     		jdbcSuccess j = new jdbcSuccess();
-    		String ID = jtf.getText();
+    		
+			//获取文本框内容
+			String ID = jtf.getText();
+			
+			//为空的话
     		if(jtf.getText().isEmpty())
     		{
     			JOptionPane.showMessageDialog(null,"请输入需要查询的身份证号！","提示消息",JOptionPane.WARNING_MESSAGE); 
     			return;
     		}
-    		else
+    		else//不为空
     		{
+				//v为查询返回的结果
     			Villager v =j.SelectMethod(2, "'"+ID+"'");
+				
+				//v为空
     			if(v == null)
     			{
     				JOptionPane.showMessageDialog(null,"没有该人！","提示消息",JOptionPane.WARNING_MESSAGE); 
     				return ;
     			}
+				
+				//不为空，那么设置文本框的内容
     			table.setValueAt(v.getName(), 0, 0);
     	        table.setValueAt(v.getAge(), 0, 1);
     	        table.setValueAt(v.getSex(), 0, 2);
