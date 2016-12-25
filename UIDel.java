@@ -1,7 +1,7 @@
 /*
 * author:haohaosong
 * date:2016/12/9
-* note:The UIDelete interface when the admin wants to delete the information
+* note:信息删除的界面
 */
 
 import java.awt.*;  
@@ -66,11 +66,17 @@ public class UIDel extends JFrame implements ActionListener
 }  
         @Override  
         public void actionPerformed(ActionEvent e) {  
-            // TODO Auto-generated method stub  
+            
+			//单击不同按钮触发的事件
         	if(e.getActionCommand()=="确认删除")  
             {    
+				//生成数据库链接成功的对象，对数据库进行操作
         		jdbcSuccess j = new jdbcSuccess();
+				
+				//获取文本框的姓名
         		String name = jf1.getText();
+				
+				//如果为空
         		if(jf1.getText().isEmpty())
         		{
         			JOptionPane.showMessageDialog(null,"请输入需要删除的姓名！","提示消息",JOptionPane.WARNING_MESSAGE); 
@@ -78,19 +84,27 @@ public class UIDel extends JFrame implements ActionListener
         		}
         		else
         		{
+					//v为查询成功后对象的返回值
         			Villager v =j.SelectMethod(1, "'"+name+"'");
+					
+					//没有查询到
         			if(v == null)
         			{
         				JOptionPane.showMessageDialog(null,"该人不存在！","提示消息",JOptionPane.WARNING_MESSAGE); 
         				return ;
         			}
+					
+					//查询到了
         			 j.DeleteMethod("'"+name+"'");
+					 
+					 //提示
         			 JOptionPane.showMessageDialog(null,"删除成功！","提示消息",JOptionPane.WARNING_MESSAGE); 
-        			 this.hide();
+        			 this.hide();//隐藏该界面
         		}
             }
             else if(e.getActionCommand()=="取消重置")  
             {  
+				//清空文本框的内容
             	jf1.setText("");  
             }
         }  
