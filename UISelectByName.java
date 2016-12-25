@@ -2,6 +2,7 @@
 /*
  * author:haohaosong 
  * date:2016/12/19
+ * note:按照姓名查询的界面
  */
   
 import javax.swing.*;  
@@ -29,7 +30,7 @@ public class UISelectByName extends JFrame implements ActionListener {
     JScrollPane jsp,jsp2 = null;  
   
   public static void main(String[] args) {  
-        // TODO Auto-generated method stub  
+      //测试该界面
 	  UISelectByName t = new UISelectByName();  
   }  
   
@@ -93,23 +94,29 @@ public class UISelectByName extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {  
     	if(e.getActionCommand()=="查询")  
         {    
-        	    //调用数据库，查询信息
+        	//调用数据库，查询信息
     		jdbcSuccess j = new jdbcSuccess();
-    		String name = jtf.getText();
+    		
+			//字符串获取文本框内容
+			String name = jtf.getText();
+			
+			//文本框为空
     		if(jtf.getText().isEmpty())
     		{
     			JOptionPane.showMessageDialog(null,"请输入需要查询的姓名！","提示消息",JOptionPane.WARNING_MESSAGE); 
     			return;
     		}
-    		else
-    		{
+    		else//不为空
+    		{	
+				//v接收查询返回结果
     			Villager v =j.SelectMethod(1, "'"+name+"'");
     			if(v == null)
     			{
     				JOptionPane.showMessageDialog(null,"没有该人！","提示消息",JOptionPane.WARNING_MESSAGE); 
     				return ;
     			}
-    			//{ "姓名", "年龄", "性别", "身份证号", "婚否","民族", "地址"};  
+    			
+				//设置文本框的内容
     			table.setValueAt(v.getName(), 0, 0);
     	        table.setValueAt(v.getAge(), 0, 1);
     	        table.setValueAt(v.getSex(), 0, 3);
